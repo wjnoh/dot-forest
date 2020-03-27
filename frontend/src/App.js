@@ -3,7 +3,7 @@ import React from 'react';
 function App() {
   return (
     <div className="App">
-      Hello AC-QR
+      Hello Dot Forest!
     </div>
   );
 }
