@@ -1,12 +1,34 @@
-const express = require("express");
+require('dotenv').config();
+
+const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const router = require('./api');
 
-app.get("/api/board", (req, res) => {
-  res.send([1, 2, 3]);
-});
+const {
+  PORT: port = 4000,
+  MONGO_URI: mongoURI,
+} = process.env;
 
-app.get("/api/board/:id", (req, res) => {
-  res.send(req.params.id);
-});
-  
-app.listen(4000, () => console.log("Listening on port 3000!"));
+mongoose
+  .connect(
+    mongoURI,
+    {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+    },
+  )
+  .then(() => {
+    console.log('Connected to mongodb!');
+  })
+  .catch(error => {
+    console.log(error);
+  });
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.use('/api', router);
+
+app.listen(port, () => console.log('Listening on port 4000!'));
