@@ -15,6 +15,7 @@ module.exports = {
   "rules": {
     quotes: ["error", "single"],
     semi: ["error", "always"],
-    "comma-dangle": ["error", "always-multiline"]
+    "comma-dangle": ["error", "always-multiline"],
+    "object-curly-spacing": ["error", "always"],
   }
 };

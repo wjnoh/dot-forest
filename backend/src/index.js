@@ -5,10 +5,13 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const router = require('./api');
+const passport = require('passport');
+const passportConfig = require('./config/passport');
 
 const {
   PORT: port = 4000,
   MONGO_URI: mongoURI,
+  JWT_SECRET_KEY: jwtKey,
 } = process.env;
 
 mongoose
@@ -25,6 +28,9 @@ mongoose
   .catch(error => {
     console.log(error);
   });
+
+app.use(passport.initialize());
+passportConfig(passport, jwtKey);
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
