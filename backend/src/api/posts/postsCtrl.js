@@ -2,7 +2,7 @@ const Post = require('../../models/post');
 
 // 이메일 인증 체크
 exports.emailVerifyCheck = (req, res, next) => {
-  if(!req.user.isEmailVerified) {
+  if (!req.user.isEmailVerified) {
     return res.status(401).send({ message: '이메일 인증을 완료하세요.' });
   }
 
@@ -15,7 +15,7 @@ exports.authorVerifyCheck = (req, res, next) => {
     if (error) return res.status(500).send(error);
     if (!post) return res.status(400).send(error);
     
-    if(req.user.nickName !== post.author) {
+    if (req.user.nickName !== post.author) {
       return res.status(401).send({ message: '작성자가 아닙니다.' });
     }
     

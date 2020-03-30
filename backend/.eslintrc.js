@@ -17,5 +17,6 @@ module.exports = {
     semi: ["error", "always"],
     "comma-dangle": ["error", "always-multiline"],
     "object-curly-spacing": ["error", "always"],
+    "keyword-spacing": ["error", { "before": true }],
   }
 };

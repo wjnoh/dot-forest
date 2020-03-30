@@ -12,7 +12,7 @@ module.exports = (passport, jwtKey) => {
       (payload, done) => {
         User.findOne({ email: payload.email })
           .then(user => {
-            if(user) {
+            if (user) {
               return done(null, user);
             }
             return done(null, false);

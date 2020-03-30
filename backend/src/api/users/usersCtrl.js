@@ -63,7 +63,7 @@ exports.sendVerifyEmail = (req, res) => {
 
   // 인증 메일 재전송 시간 체크
   const currentDate = new Date();
-  if(((currentDate - emailedDate) / 1000) / 60 < 10) {
+  if (((currentDate - emailedDate) / 1000) / 60 < 10) {
     return res.status(400).send({ message: '인증 메일 재전송은 10분에 한 번만 가능합니다.' });
   }
 
@@ -107,12 +107,12 @@ exports.verifyEmail = (req, res) => {
     if (!user) return res.status(400).send(error);
 
     // 이미 인증이 완료되었다면
-    if(user.isEmailVerified) {
+    if (user.isEmailVerified) {
       return res.status(400).send({ message: '이미 이메일 인증이 완료된 계정입니다.' });
     }
 
     // 이메일 인증코드가 틀리다면
-    if(user.verifyCode !== user_verifyCode) {
+    if (user.verifyCode !== user_verifyCode) {
       return res.status(400).send({ message: '인증을 완료할 수 없습니다. 이메일을 다시 확인하세요.' });
     }
 
@@ -134,7 +134,7 @@ exports.signin = (req, res) => {
     // 패스워드 비교
     bcrypt.compare(password, user.password)
       .then(isMatch => {
-        if(!isMatch) return res.status(400).send({ error, message: '패스워드가 일치하지 않습니다.' });
+        if (!isMatch) return res.status(400).send({ error, message: '패스워드가 일치하지 않습니다.' });
 
         const payload = {
           email: user.email,
