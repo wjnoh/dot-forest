@@ -11,12 +11,13 @@ const postSchema = new Schema({
     type: String,
     required: true,
   },
-  publishedDate: {
+  createdDate: {
     type: Date,
     default: new Date(),
   },
   updatedDate: {
     type: Date,
+    default: new Date(),
   },
 });
 

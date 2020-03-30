@@ -15,12 +15,25 @@ const userSchema = new Schema({
     type: String,
     required: true,
   },
+  isEmailVerified: {
+    type: Boolean, 
+    default: false,
+  },
+  verifyCode: {
+    type: String,
+    required: true,
+  },
+  emailedDate: {
+    type: Date,
+    default: new Date(),
+  },
   createdDate: {
     type: Date,
     default: new Date(),
   },
   updatedDate: {
     type: Date,
+    default: new Date(),
   },
 });
 
