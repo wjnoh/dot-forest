@@ -36,5 +36,12 @@ router.delete(
   postsCtrl.checkAuthor,
   postsCtrl.remove,
 );
+router.post(
+  '/comments/:post_id',
+  postsCtrl.checkObjectId,
+  passport.authenticate('jwt', { session: false }),
+  postsCtrl.checkEmailVerification,
+  postsCtrl.writeComment,
+);
 
 module.exports = router;

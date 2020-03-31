@@ -1,5 +1,6 @@
 const { ObjectId } = require('mongoose').Types;
 const Post = require('../../models/post');
+const Comment = require('../../models/comment');
 
 // 유효한 post_id인지 체크
 exports.checkObjectId = (req, res, next) => {
@@ -72,7 +73,7 @@ exports.list = async (req, res) => {
 // 게시글 내용 불러오기
 exports.read = async (req, res) => {
   try {
-    const post = await Post.findOne({ _id: req.params.post_id });
+    const post = await Post.findOne({ _id: req.params.post_id }).populate('comments');
     res.json(post);
   } catch (error) {
     return res.status(500).send(error);
@@ -100,6 +101,29 @@ exports.remove = async (req, res) => {
   try {
     await Post.deleteOne({ _id: req.params.post_id });
     res.status(204).end();
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+};
+
+// 댓글 작성
+exports.writeComment = async (req, res) => {
+  const { content } = req.body;
+  const { post_id } = req.params;
+  const { nickName, _id } = req.user;
+
+  const newComment = new Comment({
+    content,
+    author: nickName,
+    authorId: _id,
+  });
+
+  try {
+    const post = await Post.findOne({ _id: post_id });
+    const comment = await newComment.save();
+    post.comments.push(comment._id);
+    await post.save();
+    res.json(comment);
   } catch (error) {
     return res.status(500).send(error);
   }

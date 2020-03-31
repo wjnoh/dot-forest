@@ -1,13 +1,8 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const { ObjectId } = mongoose.Types;
-const mongoosePaginate = require('mongoose-paginate-v2');
 
-const postSchema = new Schema({
-  title: {
-    type: String,
-    required: true,
-  },
+const commentSchema = new Schema({
   content: {
     type: String,
     required: true,
@@ -20,12 +15,6 @@ const postSchema = new Schema({
     type: ObjectId,
     required: true,
   },
-  comments: [
-    {
-      type: ObjectId,
-      ref: 'Comment',
-    },
-  ],
   createdDate: {
     type: Date,
     default: new Date(),
@@ -36,6 +25,4 @@ const postSchema = new Schema({
   },
 });
 
-postSchema.plugin(mongoosePaginate);
-
-module.exports = mongoose.model('Post', postSchema);
+module.exports = mongoose.model('Comment', commentSchema);
