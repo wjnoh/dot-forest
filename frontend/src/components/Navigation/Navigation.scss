@@ -1,0 +1,43 @@
+@import '../../shared/color.scss';
+@import '../../shared/mediaQuery.scss';
+
+.navigation {
+  height: 50px;
+  background-color: $background-grey;
+  border-bottom: 1px solid lightgrey;
+
+  .navigation-items {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    overflow: auto;
+    padding: 0 15px;
+    @include mobile {
+      padding: 0;
+    }
+    &::-webkit-scrollbar {
+      display:none;
+    }
+
+    .navigation-item {
+      padding-right: 15px;
+      @include mobile {
+        &:first-child {
+          padding-left: 15px;
+        }
+      }
+
+      a {
+        color: black;
+        text-decoration: none;
+        &:hover {
+          font-weight: bold;
+        }
+        &.selected {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
