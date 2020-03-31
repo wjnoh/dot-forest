@@ -5,8 +5,8 @@ const postsCtrl = require('./postsCtrl');
 
 router.post(
   '/',
-  passport.authenticate('jwt',{ session:false }),
-  postsCtrl.emailVerifyCheck,
+  passport.authenticate('jwt', { session:false }),
+  postsCtrl.checkEmailVerification,
   postsCtrl.write,
 );
 router.get(
@@ -15,22 +15,25 @@ router.get(
 );
 router.get(
   '/:post_id',
+  postsCtrl.checkObjectId,
   passport.authenticate('jwt', { session: false }),
-  postsCtrl.emailVerifyCheck,
+  postsCtrl.checkEmailVerification,
   postsCtrl.read,
 );
 router.put(
   '/:post_id',
+  postsCtrl.checkObjectId,
   passport.authenticate('jwt', { session: false }),
-  postsCtrl.emailVerifyCheck,
-  postsCtrl.authorVerifyCheck,
+  postsCtrl.checkEmailVerification,
+  postsCtrl.checkAuthor,
   postsCtrl.update,
 );
 router.delete(
   '/:post_id',
+  postsCtrl.checkObjectId,
   passport.authenticate('jwt', { session: false }),
-  postsCtrl.emailVerifyCheck,
-  postsCtrl.authorVerifyCheck,
+  postsCtrl.checkEmailVerification,
+  postsCtrl.checkAuthor,
   postsCtrl.remove,
 );
 
