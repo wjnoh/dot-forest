@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-
 const { Schema } = mongoose;
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 const postSchema = new Schema({
   title: {
@@ -24,5 +24,7 @@ const postSchema = new Schema({
     default: new Date(),
   },
 });
+
+postSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Post', postSchema);
