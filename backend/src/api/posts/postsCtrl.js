@@ -1,6 +1,7 @@
 const { ObjectId } = require('mongoose').Types;
 const Post = require('../../models/post');
 const Comment = require('../../models/comment');
+const User = require('../../models/user');
 
 // 유효한 post_id인지 체크
 exports.checkObjectId = (req, res, next) => {
@@ -124,6 +125,62 @@ exports.writeComment = async (req, res) => {
     post.comments.push(comment._id);
     await post.save();
     res.json(comment);
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+};
+
+// 게시글 추천
+exports.likePost = async (req, res) => {
+  const { post_id } = req.params;
+  const { _id } = req.user;
+
+  try {
+    const user = await User.findOne({ _id });
+
+    // 이미 추천했는지 확인
+    if (user.likePost.filter(postId => postId.equals(post_id)).length) {
+      return res.status(400).send({ message: '이미 추천한 게시글입니다.' });
+    }
+
+    // 게시글에 추천수 +1
+    const post = await Post.findOne({ _id: post_id });
+    post.likeCount += 1;
+    const savedPost = await post.save();
+
+    // 유저에 좋아요한 게시글 추가
+    user.likePost.push(post_id);
+    await user.save();
+
+    res.json({ savedPost });
+  } catch (error) {
+    return res.status(500).send(error);
+  }
+};
+
+// 게시글 추천 취소
+exports.unlikePost = async (req, res) => {
+  const { post_id } = req.params;
+  const { _id } = req.user;
+
+  try {
+    const user = await User.findOne({ _id });
+
+    // 추천 기록이 있는지 확인
+    if (!user.likePost.filter(postId => postId.equals(post_id)).length) {
+      return res.status(400).send({ message: '이 게시글을 추천한 기록이 없습니다.' });
+    }
+
+    // 게시글 추천수 -1
+    const post = await Post.findOne({ _id: post_id });
+    post.likeCount -= 1;
+    const savedPost = await post.save();
+
+    // 유저에 좋아요한 게시글 삭제
+    user.likePost.pop(post_id);
+    await user.save();
+
+    res.json({ savedPost });
   } catch (error) {
     return res.status(500).send(error);
   }

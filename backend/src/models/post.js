@@ -26,6 +26,10 @@ const postSchema = new Schema({
       ref: 'Comment',
     },
   ],
+  likeCount: {
+    type: Number,
+    default: 0,
+  },
   createdDate: {
     type: Date,
     default: new Date(),

@@ -43,5 +43,19 @@ router.post(
   postsCtrl.checkEmailVerification,
   postsCtrl.writeComment,
 );
+router.post(
+  '/likePost/:post_id',
+  postsCtrl.checkObjectId,
+  passport.authenticate('jwt', { session: false }),
+  postsCtrl.checkEmailVerification,
+  postsCtrl.likePost,
+);
+router.post(
+  '/unlikePost/:post_id',
+  postsCtrl.checkObjectId,
+  passport.authenticate('jwt', { session: false }),
+  postsCtrl.checkEmailVerification,
+  postsCtrl.unlikePost,
+);
 
 module.exports = router;
