@@ -1,0 +1,13 @@
+$desktop-width: 800px;
+
+@mixin mobile {
+  @media (max-width: #{$desktop-width - 1}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}

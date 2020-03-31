@@ -1,0 +1,33 @@
+@import '../../shared/color.scss';
+@import '../../shared/mediaQuery.scss';
+
+.post-list {
+  margin-top: 30px;
+  @include mobile {
+    margin-top: 15px;
+  }
+
+  .post-items {
+    padding: 0 15px;
+    @include mobile {
+      padding: 0 15px;
+    }
+
+    .post-sizer,
+    .post-item {
+      width: 32%;
+      margin-bottom: 10px;
+      @include mobile {
+        width: 48%;
+      }
+    }
+
+    .post-gutter {
+      width: 2%;
+      @include mobile {
+        width: 4%;
+      }
+    }
+  }
+
+}

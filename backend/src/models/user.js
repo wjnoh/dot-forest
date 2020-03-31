@@ -1,35 +1,38 @@
 const mongoose = require('mongoose');
-const { Schema } = mongoose;
 const { ObjectId } = mongoose.Types;
-const mongoosePaginate = require('mongoose-paginate-v2');
+const { Schema } = mongoose;
 
-const postSchema = new Schema({
-  title: {
+const userSchema = new Schema({
+  email: {
     type: String,
     required: true,
   },
-  content: {
+  password: {
     type: String,
     required: true,
   },
-  author: {
+  nickName: {
     type: String,
     required: true,
   },
-  authorId: {
-    type: ObjectId,
+  isEmailVerified: {
+    type: Boolean, 
+    default: false,
+  },
+  verifyCode: {
+    type: String,
     required: true,
   },
-  comments: [
+  emailedDate: {
+    type: Date,
+    default: new Date(),
+  },
+  likePost: [
     {
       type: ObjectId,
-      ref: 'Comment',
+      ref: 'Post',
     },
   ],
-  likeCount: {
-    type: Number,
-    default: 0,
-  },
   createdDate: {
     type: Date,
     default: new Date(),
@@ -40,6 +43,4 @@ const postSchema = new Schema({
   },
 });
 
-postSchema.plugin(mongoosePaginate);
-
-module.exports = mongoose.model('Post', postSchema);
+module.exports = mongoose.model('User', userSchema);
