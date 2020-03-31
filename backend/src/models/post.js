@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
+const { ObjectId } = mongoose.Types;
 const mongoosePaginate = require('mongoose-paginate-v2');
 
 const postSchema = new Schema({
@@ -13,6 +14,10 @@ const postSchema = new Schema({
   },
   author: {
     type: String,
+    required: true,
+  },
+  authorId: {
+    type: ObjectId,
     required: true,
   },
   createdDate: {

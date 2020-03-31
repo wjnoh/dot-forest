@@ -25,12 +25,12 @@ exports.checkEmailVerification = (req, res, next) => {
 
 // 게시글 작성자 체크
 exports.checkAuthor = async (req, res, next) => {
-  const { nickName } = req.user;
+  const { _id } = req.user;
 
   try {
     const post = await Post.findOne({ _id: req.params.post_id });
     
-    if (nickName !== post.author) {
+    if (!_id.equals(post.authorId)) {
       return res.status(401).send({ message: '작성자가 아닙니다.' });
     }
   } catch (error) {
@@ -46,6 +46,7 @@ exports.write = async (req, res) => {
     title: req.body.title,
     content: req.body.content,
     author: req.user.nickName,
+    authorId: req.user._id,
   });
 
   try {
