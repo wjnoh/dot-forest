@@ -9,9 +9,6 @@
 
   .post-items {
     padding: 0 15px;
-    @include mobile {
-      padding: 0 15px;
-    }
 
     .post-sizer,
     .post-item {

@@ -13,32 +13,19 @@
   align-items: center;
 
   .modal {
-    position: relative;
     width: 400px;
     min-height: 400px;
     background-color: white;
     border-radius: 3px;
     z-index: 101;
-    &.small {
-      width: 300px;
-      min-height: 300px;
-    }
-    &.largh {
-      width: 500px;
-      min-height: 500px;
-    }
     @include mobile {
       width: 100%;
-      min-height: 400px;
       margin: 0 15px;
-      &.small {
-        width: 100%;
-        min-height: 300px;
-      }
-      &.largh {
-        width: 100%;
-        min-height: 500px;
-      }
+    }
+
+    .modal-content {
+      width: 100%;
+      height: 100%;
     }
   }
 
