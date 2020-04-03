@@ -1,5 +1,5 @@
 import React from 'react';
-import useInput from '../../hooks/useInput';
+import useInput from '../../hooks/useInput.js';
 import './SigninForm.scss';
 
 function SigninForm() {

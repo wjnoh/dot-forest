@@ -1,5 +1,5 @@
 import React from 'react';
-import useInput from '../../hooks/useInput';
+import useInput from '../../hooks/useInput.js';
 import './SignupForm.scss';
 
 function SignupForm() {
@@ -27,19 +27,19 @@ function SignupForm() {
         <div className="signup-form-inputs">
           <div className="input-wrapper">
             {emailInput}
-            {isEmailOk && <span className="valid-check">✔</span>}
+            {<span className={`valid-check ${isEmailOk ? 'clicked' : ''}`}>✔</span>}
           </div>
           <div className="input-wrapper">
             {passwordInput}
-            {isPasswordOk && <span className="valid-check">✔</span>}
+            <span className={`valid-check ${isPasswordOk ? 'clicked' : ''}`}>✔</span>
           </div>
           <div className="input-wrapper">
             {passwordConfirmInput}
-            {isPasswordConfirmOk && <span className="valid-check">✔</span>}
+            <span className={`valid-check ${isPasswordConfirmOk ? 'clicked' : ''}`}>✔</span>
           </div>
           <div className="input-wrapper">
             {nickNameInput}
-            {isNickNameOk && <span className="valid-check">✔</span>}
+            <span className={`valid-check ${isNickNameOk ? 'clicked' : ''}`}>✔</span>
           </div>
         </div>
         <div className="signup-form-buttons">
