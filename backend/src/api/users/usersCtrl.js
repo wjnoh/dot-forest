@@ -58,7 +58,19 @@ exports.signup = async (req, res) => {
 
 // 회원가입 인증 메일 재전송
 exports.sendVerifyEmail = async (req, res) => {
-  const { email, emailedDate } = req.user;
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+  const { isEmailVerified, emailedDate } = user;
+
+  if (!user) return res.status(400).send({ message: '가입된 이메일이 아닙니다.' });
+  if (isEmailVerified) return res.status(400).send({ message: '이미 인증이 완료된 이메일입니다.' });
+
+  // 패스워드 비교
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) return res.status(400).send({ message: '패스워드가 일치하지 않습니다.' });
+
+  console.log(user);
 
   // 인증 메일 재전송 시간 체크
   const currentDate = new Date();

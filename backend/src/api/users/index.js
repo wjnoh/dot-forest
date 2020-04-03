@@ -9,7 +9,6 @@ router.post(
 );
 router.post(
   '/sendVerifyEmail',
-  passport.authenticate('jwt', { session: false }),
   usersCtrl.sendVerifyEmail,
 );
 router.get(
