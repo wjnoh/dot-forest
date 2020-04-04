@@ -1,15 +1,22 @@
 import React from 'react';
-import Header from './components/Header/Header';
-import Navigation from './components/Navigation/Navigation';
-import PostList from './components/PostList/PostList';
+import { Router } from 'react-router-dom';
+import RouterComponent from './RouterComponent';
+import history from './utils/history';
+
+// redux
+import { Provider } from "react-redux";
+import configureStore from "./store/configureStore";
+import rootSaga from "./store/sagas";
+const store = configureStore();
+store.runSaga(rootSaga);
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Navigation />
-      <PostList />
-    </div>
+    <Router history={history}>
+      <Provider store={store}>
+        <RouterComponent />
+      </Provider>
+    </Router>
   );
 }
 
