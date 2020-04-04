@@ -23,6 +23,7 @@ function* fetchSignInSaga(action) {
   }
 }
 
+// 회원가입
 function* fetchSignUpSaga(action) {
   try {
     const { email, password, nickName } = action.payload;
@@ -36,7 +37,22 @@ function* fetchSignUpSaga(action) {
   }
 }
 
+// 회원가입 인증메일 재전송
+function* fetchSendVerifyEmailSaga(action) {
+  try {
+    const { email, password } = action.payload;
+    const { data: { message } } = yield call(fetchPOST, { url: '/users/sendVerifyEmail', data: { email, password } });
+
+    yield put(userActionCreators.fetchSendVerifyEmailFulfilled());
+    alert(message);
+  } catch(error) {
+    alert(error.response.data.message);
+    yield put(userActionCreators.fetchSendVerifyEmailRejected(error.response));
+  }
+}
+
 export default function* root() {
   yield takeLatest(userActionTypes.FETCH_SIGN_IN, fetchSignInSaga);
   yield takeLatest(userActionTypes.FETCH_SIGN_UP, fetchSignUpSaga);
+  yield takeLatest(userActionTypes.FETCH_SEND_VERIFY_EMAIL, fetchSendVerifyEmailSaga);
 }

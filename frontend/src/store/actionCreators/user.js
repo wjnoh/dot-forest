@@ -51,9 +51,10 @@ export function fetchSignUpRejected(error) {
 }
 
 // 회원가입 인증메일 재전송
-export function fetchSendVerifyEmail() {
+export function fetchSendVerifyEmail(payload) {
   return {
-    type: actionTypes.FETCH_SEND_VERIFY_EMAIL
+    type: actionTypes.FETCH_SEND_VERIFY_EMAIL,
+    payload
   }
 }
 
