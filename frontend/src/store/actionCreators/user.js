@@ -30,16 +30,16 @@ export function signOut() {
 }
 
 // 회원가입
-export function fetchSignUp() {
+export function fetchSignUp(payload) {
   return {
-    type: actionTypes.FETCH_SIGN_UP
+    type: actionTypes.FETCH_SIGN_UP,
+    payload
   }
 }
 
-export function fetchSignUpFulfilled(payload) {
+export function fetchSignUpFulfilled() {
   return {
-    type: actionTypes.FETCH_SIGN_UP_FULFILLED,
-    payload
+    type: actionTypes.FETCH_SIGN_UP_FULFILLED
   }
 }
 

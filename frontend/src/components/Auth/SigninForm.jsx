@@ -15,6 +15,7 @@ function SigninForm() {
 
     if(!(email && password)) {
       alert('입력한 정보를 다시 확인하세요.');
+      return;
     }
 
     dispatch(userActionCreators.fetchSignIn({ email, password }));

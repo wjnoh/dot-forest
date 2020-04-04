@@ -142,6 +142,7 @@ exports.signin = async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (!user) return res.status(400).send({ message: '가입된 이메일이 아닙니다.' });
+    if (!user.isEmailVerified) return res.status(400).send({ message: '인증된 메일이 아닙니다. 메일을 확인하세요.' });
 
     // 패스워드 비교
     const isMatch = await bcrypt.compare(password, user.password);
@@ -154,7 +155,7 @@ exports.signin = async (req, res) => {
 
     // JWT토큰 생성
     const jwtToken = jwt.sign(payload, jwtKey, { expiresIn: 3600 });
-    res.json({ jwtToken: 'Bearer ' + jwtToken, user });
+    res.json({ jwtToken: 'Bearer ' + jwtToken, user, message: `${user.nickName}님 환영합니다!` });
   } catch (error) {
     return res.status(500).send(error);
   }

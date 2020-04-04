@@ -30,12 +30,6 @@ export default function(state=INITIAL_STATE, action) {
     }
 
     // 회원가입
-    case actionType.FETCH_SIGN_UP_FULFILLED: {
-      return {
-        ...state,
-        currentUser: action.payload
-      }
-    }
     case actionType.FETCH_SIGN_UP_REJECTED: {
       return {
         ...state,

@@ -9,13 +9,13 @@ import * as userActionTypes from '../actionTypes/user';
 function* fetchSignInSaga(action) {
   try {
     const { email, password } = action.payload;
-    const { data: { jwtToken, user } } = yield call(fetchPOST, { url: '/users/signin', data: { email, password } });
+    const { data: { jwtToken, user, message } } = yield call(fetchPOST, { url: '/users/signin', data: { email, password } });
 
     // 토큰은 로컬 스토리지에, 유저 정보는 Redux Store에
     localStorage.setItem('jwtToken', jwtToken);
     yield put(userActionCreators.fetchSignInFulfilled(user));
     
-    alert(`${user.nickName}님 환영합니다.`)
+    alert(message);
     yield call(history.replace, '/');
   } catch(error) {
     alert(error.response.data.message);
@@ -23,6 +23,20 @@ function* fetchSignInSaga(action) {
   }
 }
 
+function* fetchSignUpSaga(action) {
+  try {
+    const { email, password, nickName } = action.payload;
+    const { data: { message } } = yield call(fetchPOST, { url: '/users/signup', data: { email, password, nickName } });
+    
+    yield put(userActionCreators.fetchSignUpFulfilled());
+    alert(message);
+  } catch(error) {
+    alert(error.response.data.message);
+    yield put(userActionCreators.fetchSignUpRejected(error.response));
+  }
+}
+
 export default function* root() {
   yield takeLatest(userActionTypes.FETCH_SIGN_IN, fetchSignInSaga);
+  yield takeLatest(userActionTypes.FETCH_SIGN_UP, fetchSignUpSaga);
 }
