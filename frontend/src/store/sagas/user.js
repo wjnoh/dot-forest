@@ -58,8 +58,9 @@ function* fetchCurrentUserSaga() {
     if(jwtToken) {
       const { data: { user } } = yield call(fetchGET, { url: '/users/current', jwtToken });
       yield put(userActionCreators.fetchCurrentUserFulfilled(user));
+    } else {
+      yield put(userActionCreators.fetchCurrentUserRejected({ message: '토큰이 없습니다.' }));
     }
-    yield put(userActionCreators.fetchCurrentUserRejected());
   } catch(error) {
     alert(error.response.data.message);
     yield put(userActionCreators.fetchCurrentUserRejected(error.response));

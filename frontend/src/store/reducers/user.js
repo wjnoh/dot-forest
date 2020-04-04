@@ -24,6 +24,7 @@ export default function(state=INITIAL_STATE, action) {
     // 로그아웃
     case actionType.SIGN_OUT: {
       localStorage.removeItem('jwtToken');
+      
       return {
         ...state,
         currentUser: null
