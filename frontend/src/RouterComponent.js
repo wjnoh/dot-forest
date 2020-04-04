@@ -1,13 +1,13 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { withRouter, Switch, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import Navigation from './components/Navigation/Navigation';
 import PostList from './components/PostList/PostList';
 import Auth from './components/Auth/Auth';
 
-function Router() {
+function RouterComponent() {
   return (
-    <BrowserRouter >
+    <>
       <Header />
       <Navigation />
       <Switch>
@@ -18,8 +18,8 @@ function Router() {
           <PostList />
         </Route>
       </Switch>
-    </BrowserRouter >
+    </>
   )
 }
 
-export default Router
+export default withRouter(RouterComponent)
