@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { isEqual } from 'lodash';
 import * as userActionCreators from '../../store/actionCreators/user';
 import "./Header.scss";
 
 function Header() {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user.currentUser);
+  const user = useSelector(state => state.user.currentUser, isEqual);
 
   useEffect(() => {
     dispatch(userActionCreators.fetchCurrentUser());
