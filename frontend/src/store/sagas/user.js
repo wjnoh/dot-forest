@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 import history from '../../utils/history';
-import { fetchPOST } from '../../utils/fetch';
+import { fetchGET, fetchPOST } from '../../utils/fetch';
 import * as userActionCreators from '../actionCreators/user';
 import * as userActionTypes from '../actionTypes/user';
 
@@ -51,8 +51,24 @@ function* fetchSendVerifyEmailSaga(action) {
   }
 }
 
+// 현재 유저정보 가져오기
+function* fetchCurrentUserSaga() {
+  try {
+    const jwtToken = localStorage.getItem('jwtToken');
+    if(jwtToken) {
+      const { data: { user } } = yield call(fetchGET, { url: '/users/current', jwtToken });
+      yield put(userActionCreators.fetchCurrentUserFulfilled(user));
+    }
+    yield put(userActionCreators.fetchCurrentUserRejected());
+  } catch(error) {
+    alert(error.response.data.message);
+    yield put(userActionCreators.fetchCurrentUserRejected(error.response));
+  }
+}
+
 export default function* root() {
   yield takeLatest(userActionTypes.FETCH_SIGN_IN, fetchSignInSaga);
   yield takeLatest(userActionTypes.FETCH_SIGN_UP, fetchSignUpSaga);
   yield takeLatest(userActionTypes.FETCH_SEND_VERIFY_EMAIL, fetchSendVerifyEmailSaga);
+  yield takeLatest(userActionTypes.FETCH_CURRENT_USER, fetchCurrentUserSaga);
 }

@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import * as userActionCreators from '../../store/actionCreators/user';
 import "./Header.scss";
 
 function Header() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(userActionCreators.fetchCurrentUser());
+  }, [])
+  
   return (
     <header className="header">
       <div className="global-container">

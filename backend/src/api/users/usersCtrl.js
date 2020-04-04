@@ -167,11 +167,5 @@ exports.signin = async (req, res) => {
 
 // 현재 유저 확인
 exports.current = (req, res) => {
-  const { email, password, nickName } = req.user;
-  
-  res.json({
-    email,
-    password,
-    nickName,
-  });
+  res.json({ user: req.user });
 };

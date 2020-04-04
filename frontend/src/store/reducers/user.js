@@ -16,7 +16,8 @@ export default function(state=INITIAL_STATE, action) {
     case actionType.FETCH_SIGN_IN_REJECTED: {
       return {
         ...state,
-        error: action.error
+        error: action.error,
+        currentUser: null
       }
     }
 
@@ -33,7 +34,8 @@ export default function(state=INITIAL_STATE, action) {
     case actionType.FETCH_SIGN_UP_REJECTED: {
       return {
         ...state,
-        error: action.error
+        error: action.error,
+        currentUser: null
       }
     }
 
@@ -61,7 +63,8 @@ export default function(state=INITIAL_STATE, action) {
     case actionType.FETCH_CURRENT_USER_REJECTED: {
       return {
         ...state,
-        error: action.error
+        error: action.error,
+        currentUser: null
       }
     }
 
