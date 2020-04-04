@@ -154,7 +154,7 @@ exports.signin = async (req, res) => {
 
     // JWT토큰 생성
     const jwtToken = jwt.sign(payload, jwtKey, { expiresIn: 3600 });
-    res.json({ jwtToken: 'Bearer ' + jwtToken });
+    res.json({ jwtToken: 'Bearer ' + jwtToken, user });
   } catch (error) {
     return res.status(500).send(error);
   }
