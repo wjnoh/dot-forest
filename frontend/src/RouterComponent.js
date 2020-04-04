@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import Navigation from './components/Navigation/Navigation';
 import PostList from './components/PostList/PostList';
 import Auth from './components/Auth/Auth';
+import NewDotButton from './components/NewDotButton/NewDotButton';
 
 function RouterComponent() {
   return (
@@ -18,6 +19,7 @@ function RouterComponent() {
           <PostList />
         </Route>
       </Switch>
+      <NewDotButton />
     </>
   )
 }
