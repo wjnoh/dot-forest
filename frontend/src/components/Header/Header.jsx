@@ -8,14 +8,16 @@ import "./Header.scss";
 
 function Header() {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user.currentUser, isEqual);
+  const { isSignIn } = useSelector(state => state.user, isEqual);
 
   useEffect(() => {
-    dispatch(userActionCreators.fetchCurrentUser());
+    if(isSignIn) {
+      dispatch(userActionCreators.fetchCurrentUser());
+    }
   }, [])
 
   const handleSignOut = () => {
-    if(user) {
+    if(isSignIn) {
       dispatch(userActionCreators.signOut());
     }
   }
@@ -29,7 +31,7 @@ function Header() {
           </Link>
           <ul className="header-items">
             {
-              user ? (
+              isSignIn ? (
                 <>
                   <li className="header-item">
                     <Link to="/new" className="header-button">새 도트</Link>
