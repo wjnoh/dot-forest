@@ -1,0 +1,13 @@
+@import '../../shared/color.scss';
+@import '../../shared/mediaQuery.scss';
+
+.my-page {
+  margin-top: 30px;
+  @include mobile {
+    margin-top: 15px;
+  }
+  
+  .my-page-container {
+    padding: 0 15px;
+  }
+}

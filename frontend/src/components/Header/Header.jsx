@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { isEqual } from 'lodash';
 import * as userActionCreators from '../../store/actionCreators/user';
+import history from '../../utils/history';
 import "./Header.scss";
 
 function Header() {
@@ -31,10 +32,16 @@ function Header() {
               user ? (
                 <>
                   <li className="header-item">
-                    <Link to="/auth" className="header-button">새 도트</Link>
+                    <Link to="/new" className="header-button">새 도트</Link>
                   </li>
                   <li className="header-item">
-                    <span className="header-button" onClick={handleSignOut}>MY</span>
+                    {
+                      history.location.pathname === '/my' ? (
+                        <span className="header-button" onClick={handleSignOut}>로그아웃</span>
+                      ) : (
+                        <Link to="/my" className="header-button">MY</Link>
+                      )
+                    }
                   </li>
                 </>
               ) : (
