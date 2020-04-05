@@ -62,7 +62,7 @@ function* fetchCurrentUserSaga() {
       yield put(userActionCreators.fetchCurrentUserRejected({ message: '토큰이 없습니다.' }));
     }
   } catch(error) {
-    alert(error.response.data.message);
+    alert('토큰이 만료되었습니다.');
     yield put(userActionCreators.fetchCurrentUserRejected(error.response));
   }
 }

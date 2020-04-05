@@ -6,31 +6,40 @@
   height: 70px;
   background-color: $main-green;
 
-  .header-items {
+  .header-container {
     height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 15px;
 
-    .header-item {  
-      .logo {
-        font-family: 'Nanum Myeongjo';
-        font-size: 25px;
-        color: white;
-        text-decoration: none;
-      }
+    .logo {
+      font-family: 'Nanum Myeongjo';
+      font-size: 25px;
+      color: white;
+      text-decoration: none;
+    }
 
-      .header-button {
-        width: 65px;
-        height: 30px;
-        color: white;
-        border: 1px solid white;
-        border-radius: 3px;
-        padding: 5px 10px;
-        font-size: 14px;
-        text-decoration: none;
-        cursor: pointer;
+    .header-items {
+      display: flex;
+
+      .header-item {
+        margin-right: 15px;
+        &:last-child {
+          margin-right: 0;
+        }
+
+        .header-button {
+          width: 65px;
+          height: 30px;
+          color: white;
+          border: 1px solid white;
+          border-radius: 3px;
+          padding: 5px 10px;
+          font-size: 14px;
+          text-decoration: none;
+          cursor: pointer;
+        }
       }
     }
   }

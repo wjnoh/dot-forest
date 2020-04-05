@@ -22,19 +22,29 @@ function Header() {
   return (
     <header className="header">
       <div className="global-container">
-        <ul className="header-items">
-          <li className="header-item">
-            <Link to="/" className="logo">
-              <h1>도트의 숲</h1>
-            </Link>
-          </li>
-          <li className="header-item">
-            { user
-             ? <span className="header-button" onClick={handleSignOut}>로그아웃</span>
-             : <Link to="/auth" className="header-button">로그인</Link>
+        <div className="header-container">
+          <Link to="/" className="logo">
+            <h1>도트의 숲</h1>
+          </Link>
+          <ul className="header-items">
+            {
+              user ? (
+                <>
+                  <li className="header-item">
+                    <Link to="/auth" className="header-button">새 도트</Link>
+                  </li>
+                  <li className="header-item">
+                    <span className="header-button" onClick={handleSignOut}>MY</span>
+                  </li>
+                </>
+              ) : (
+                <li className="header-item">
+                  <Link to="/auth" className="header-button">로그인</Link>
+                </li>
+              )
             }
-          </li>
-        </ul>
+          </ul>
+        </div>
       </div>
     </header>
   )

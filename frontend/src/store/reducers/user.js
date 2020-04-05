@@ -62,6 +62,8 @@ export default function(state=INITIAL_STATE, action) {
       }
     }
     case actionType.FETCH_CURRENT_USER_REJECTED: {
+      localStorage.removeItem('jwtToken');
+      
       return {
         ...state,
         error: action.error,
