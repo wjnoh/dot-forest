@@ -47,6 +47,7 @@ exports.write = async (req, res) => {
   const newPost = new Post({
     title: req.body.title,
     content: req.body.content,
+    category: req.body.category,
     author: req.user.nickName,
     authorId: req.user._id,
   });
@@ -88,6 +89,7 @@ exports.update = async (req, res) => {
 
     post.title = req.body.title;
     post.content = req.body.content;
+    post.category = req.body.category;
     post.updatedDate = new Date();
 
     const savedPost = await post.save();
