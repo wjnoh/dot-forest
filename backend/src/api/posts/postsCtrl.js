@@ -62,10 +62,10 @@ exports.write = async (req, res) => {
 
 // 게시글 목록 불러오기
 exports.list = async (req, res) => {
-  const { page, limit } = req.query;
+  const { page, limit, category } = req.query;
 
   try {
-    const posts = await Post.paginate({}, { page, limit });
+    const posts = await Post.paginate({ category }, { page, limit });
     res.json(posts);
   } catch (error) {
     return res.status(500).send(error);
