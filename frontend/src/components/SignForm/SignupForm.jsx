@@ -12,7 +12,7 @@ function SignupForm() {
   const [passwordConfirm, passwordConfirmInput] = useInput({ type: 'password', placeholder: '패스워드 확인', required: true })
   const [nickName, nickNameInput] = useInput({ type: 'text', placeholder: '닉네임(특수문자 제외 2자 이상)', required: true })
 
-  const isEmailOk = email.match(/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i);
+  const isEmailOk = email.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i);
   const isPasswordOk = password.match(/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,12}$/);
   const isPasswordConfirmOk = password !== '' && password === passwordConfirm;
   const isNickNameOk = nickName.match(/^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/);

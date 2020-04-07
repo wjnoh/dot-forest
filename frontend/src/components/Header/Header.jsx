@@ -14,7 +14,7 @@ function Header() {
     if(isSignIn) {
       dispatch(userActionCreators.fetchCurrentUser());
     }
-  }, [])
+  }, [isSignIn, dispatch])
 
   const handleSignOut = () => {
     if(isSignIn) {
