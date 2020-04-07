@@ -1,6 +1,6 @@
 import React from 'react';
-import SigninForm from './SigninForm';
-import SignupForm from './SignupForm';
+import SigninForm from '../../components/SignForm/SigninForm';
+import SignupForm from '../../components/SignForm/SignupForm';
 import "./Auth.scss";
 
 function Auth() {

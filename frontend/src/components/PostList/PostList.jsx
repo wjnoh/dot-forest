@@ -1,18 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Masonry from 'react-masonry-component';
 import PostItem from './PostItem';
 import './PostList.scss';
 
 function PostList() {
   const [photos, setPhotos] = useState([]);
-
-  useEffect(() => {
-    fetch('https://picsum.photos/v2/list?page=2&limit=10')
-      .then(res => res.json())
-      .then(json => {
-        setPhotos(json);
-      })
-  }, [])
 
   const masonryOption = {
     itemSelector: '.post-item',

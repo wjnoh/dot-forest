@@ -58,10 +58,11 @@ function RouterComponent() {
     }
   };
 
-  const Auth = lazy(() => import("./components/Auth/Auth"));
-  const NewPost = lazy(() => import("./components/NewPost/NewPost"));
-  const MyPage = lazy(() => import("./components/MyPage/MyPage"));
-  const PostList = lazy(() => import("./components/PostList/PostList"));
+  const Auth = lazy(() => import("./pages/Auth/Auth"));
+  const NewPost = lazy(() => import("./pages/NewPost/NewPost"));
+  const MyPage = lazy(() => import("./pages/MyPage/MyPage"));
+  const Main = lazy(() => import("./pages/Main/Main"));
+  const Category = lazy(() => import("./pages/Category/Category"));
 
   return (
     <Suspense fallback={<div>로딩 중입니다.</div>}>
@@ -71,8 +72,9 @@ function RouterComponent() {
         <PublicRoute exact path="/auth" component={Auth} />
         <PrivateRoute exact path="/new" component={NewPost} />
         <PrivateRoute exact path="/my" component={MyPage} />
-        <PublicRoute exact path="/" component={PostList} />
-        <PublicRoute path="*" component={PostList} />
+        <PublicRoute exact path="/category/:categoryId" component={Category} />
+        <PublicRoute exact path="/" component={Main} />
+        <PublicRoute path="*" />
       </Switch>
     </Suspense >
   )

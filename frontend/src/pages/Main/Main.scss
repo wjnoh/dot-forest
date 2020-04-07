@@ -1,14 +1,13 @@
 @import '../../shared/color.scss';
 @import '../../shared/mediaQuery.scss';
 
-.auth {
-  margin-top: 50px;
+.main {
+  margin-top: 30px;
   @include mobile {
-    margin-top: 30px;
+    margin-top: 15px;
   }
 
-  .auth-container {
+  .main-container {
     padding: 0 15px;
-    text-align: center;
   }
 }
