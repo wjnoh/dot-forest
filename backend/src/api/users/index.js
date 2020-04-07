@@ -8,8 +8,8 @@ router.post(
   usersCtrl.signup,
 );
 router.post(
-  '/sendVerifyEmail',
-  usersCtrl.sendVerifyEmail,
+  '/reSendVerifyEmail',
+  usersCtrl.reSendVerifyEmail,
 );
 router.get(
   '/verifyEmail/:user_id/:user_verifyCode',
