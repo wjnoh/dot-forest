@@ -48,12 +48,12 @@ export default function(state=INITIAL_STATE, action) {
     }
 
     // 회원가입 인증메일 재전송
-    case actionType.FETCH_SEND_VERIFY_EMAIL_FULFILLED: {
+    case actionType.FETCH_RE_SEND_VERIFY_EMAIL_FULFILLED: {
       return {
         ...state
       }
     }
-    case actionType.FETCH_SEND_VERIFY_EMAIL_REJECTED: {
+    case actionType.FETCH_RE_SEND_VERIFY_EMAIL_REJECTED: {
       return {
         ...state,
         error: action.error

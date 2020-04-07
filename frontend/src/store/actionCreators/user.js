@@ -51,23 +51,23 @@ export function fetchSignUpRejected(error) {
 }
 
 // 회원가입 인증메일 재전송
-export function fetchSendVerifyEmail(payload) {
+export function fetchReSendVerifyEmail(payload) {
   return {
-    type: actionTypes.FETCH_SEND_VERIFY_EMAIL,
+    type: actionTypes.FETCH_RE_SEND_VERIFY_EMAIL,
     payload
   }
 }
 
-export function fetchSendVerifyEmailFulfilled(payload) {
+export function fetchReSendVerifyEmailFulfilled(payload) {
   return {
-    type: actionTypes.FETCH_SEND_VERIFY_EMAIL_FULFILLED,
+    type: actionTypes.FETCH_RE_SEND_VERIFY_EMAIL_FULFILLED,
     payload
   }
 }
 
-export function fetchSendVerifyEmailRejected(error) {
+export function fetchReSendVerifyEmailRejected(error) {
   return {
-    type: actionTypes.FETCH_SEND_VERIFY_EMAIL_REJECTED,
+    type: actionTypes.FETCH_RE_SEND_VERIFY_EMAIL_REJECTED,
     error
   }
 }
