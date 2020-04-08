@@ -1,5 +1,4 @@
 import * as actionType from '../actionTypes/user';
-import history from '../../utils/history';
 
 const INITIAL_STATE = {
   isSignIn: Boolean(localStorage.getItem('jwtToken')),
@@ -28,7 +27,6 @@ export default function(state=INITIAL_STATE, action) {
     // 로그아웃
     case actionType.SIGN_OUT: {
       localStorage.removeItem('jwtToken');
-      history.push('/');
       
       return {
         ...state,
@@ -70,7 +68,6 @@ export default function(state=INITIAL_STATE, action) {
     }
     case actionType.FETCH_CURRENT_USER_REJECTED: {
       localStorage.removeItem('jwtToken');
-      history.push('/');
 
       return {
         ...state,
