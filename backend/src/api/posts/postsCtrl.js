@@ -47,6 +47,7 @@ exports.write = async (req, res) => {
   const newPost = new Post({
     title: req.body.title,
     content: req.body.content,
+    category: req.body.category,
     author: req.user.nickName,
     authorId: req.user._id,
   });
@@ -61,10 +62,10 @@ exports.write = async (req, res) => {
 
 // 게시글 목록 불러오기
 exports.list = async (req, res) => {
-  const { page, limit } = req.query;
+  const { page, limit, category } = req.query;
 
   try {
-    const posts = await Post.paginate({}, { page, limit });
+    const posts = await Post.paginate({ category }, { page, limit });
     res.json(posts);
   } catch (error) {
     return res.status(500).send(error);
@@ -88,6 +89,7 @@ exports.update = async (req, res) => {
 
     post.title = req.body.title;
     post.content = req.body.content;
+    post.category = req.body.category;
     post.updatedDate = new Date();
 
     const savedPost = await post.save();

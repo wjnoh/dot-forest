@@ -1,0 +1,34 @@
+@import '../../shared/color.scss';
+@import '../../shared/mediaQuery.scss';
+
+.new-post {
+  margin-top: 30px;
+  @include mobile {
+    margin-top: 15px;
+  }
+  
+  .new-post-container {
+    padding: 0 15px;
+
+    .image-upload {
+      position: relative;
+      height: 300px;
+      border: 2px dashed lightgrey;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #fafafa;
+      user-select: none;
+
+      .image-upload-message {
+        font-size: 18px;
+        color: #707070;
+      }
+
+      .image-preview {
+        position: absolute;
+        height: 100%;
+      }
+    }
+  }
+}

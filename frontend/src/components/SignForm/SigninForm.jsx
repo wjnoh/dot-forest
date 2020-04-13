@@ -21,7 +21,7 @@ function SigninForm() {
     dispatch(userActionCreators.fetchSignIn({ email, password }));
   }
 
-  const handleSendMailClick = (e) => {
+  const handleReSendMailClick = (e) => {
     e.preventDefault();
 
     if(!(email && password)) {
@@ -29,7 +29,7 @@ function SigninForm() {
       return;
     }
 
-    dispatch(userActionCreators.fetchSendVerifyEmail({ email, password }));
+    dispatch(userActionCreators.fetchReSendVerifyEmail({ email, password }));
   }
 
   return (
@@ -41,7 +41,7 @@ function SigninForm() {
         </div>
         <div className="signin-form-buttons">
         <button className="green" onClick={handleSignInClick}>로그인</button>
-        <button className="" onClick={handleSendMailClick}>회원가입 인증 메일 재전송</button>
+        <button className="" onClick={handleReSendMailClick}>회원가입 인증 메일 재전송</button>
       </div>
       </form>
     </div>

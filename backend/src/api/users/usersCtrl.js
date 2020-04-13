@@ -4,6 +4,33 @@ const nodemailer = require('nodemailer');
 const User = require('../../models/user');
 const { JWT_SECRET_KEY: jwtKey, GMAIL_ID: gmailId, GMAIL_PASSWORD: gmailPassword } = process.env;
 
+// 회원가입 인증 메일 전송
+const sendVerifyEmail = async ({ email, id, verifyCode }) => {
+  // 전송 정보
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: gmailId,
+      pass: gmailPassword,
+    },
+  });
+
+  // 이메일 정보
+  const mailOptions= {
+    from: gmailId,
+    to: email,
+    subject: '도트의 숲에서 보낸 회원가입 인증 메일입니다.',
+    html: `
+            <h1>도트의 숲에서 보낸 회원가입 인증 메일입니다.</h1>
+            <a href="http://localhost:4000/api/users/verifyEmail/${id}/${verifyCode}">
+              이메일 인증을 완료하려면 클릭하세요.
+            </a>
+          `,
+  };
+
+  await transporter.sendMail(mailOptions);
+};
+
 // 회원가입
 // TODO 정규식으로 유효성 검사 필요
 exports.signup = async (req, res) => {
@@ -29,28 +56,9 @@ exports.signup = async (req, res) => {
     newUser.password = hash;
     const savedUser = await newUser.save();
 
-    // 이메일 전송 정보
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: gmailId,
-        pass: gmailPassword,
-      },
-    });
-    const mailOptions= {
-      from: gmailId,
-      to: savedUser.email,
-      subject: '도트의 숲에서 보낸 회원가입 인증 메일입니다.',
-      html: `
-              <h1>도트의 숲에서 보낸 회원가입 인증 메일입니다.</h1>
-              <a href="http://localhost:4000/api/users/verifyEmail/${savedUser._id}/${savedUser.verifyCode}">
-                이메일 인증을 완료하려면 클릭하세요.
-              </a>
-            `,
-    };
-
     // 이메일 전송
-    await transporter.sendMail(mailOptions);
+    await sendVerifyEmail({ email: savedUser.email, id: savedUser._id, verifyCode: savedUser.verifyCode });
+
     res.json({ savedUser, message: '회원가입 인증 메일이 전송되었습니다.' });
   } catch (error) {
     return res.status(500).send(error);
@@ -58,7 +66,7 @@ exports.signup = async (req, res) => {
 };
 
 // 회원가입 인증 메일 재전송
-exports.sendVerifyEmail = async (req, res) => {
+exports.reSendVerifyEmail = async (req, res) => {
   const { email, password } = req.body;
 
   try {
@@ -79,33 +87,13 @@ exports.sendVerifyEmail = async (req, res) => {
       return res.status(400).send({ message: '인증 메일 재전송은 10분에 한 번만 가능합니다.' });
     }
 
-    // 이메일 전송 정보
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: gmailId,
-        pass: gmailPassword,
-      },
-    });
-    const mailOptions= {
-      from: gmailId,
-      to: email,
-      subject: '도트의 숲에서 보낸 회원가입 인증 메일입니다.',
-      text: '도트의 숲에서 보낸 회원가입 인증 메일입니다.',
-      html: `
-      <h1>도트의 숲에서 보낸 회원가입 인증 메일입니다.</h1>
-      <a href="http://localhost:4000/api/users/verifyEmail/${user._id}/${user.verifyCode}">
-        이메일 인증을 완료하려면 클릭하세요.
-      </a>
-    `,
-    };
-
     // 이메일 보낸 일시 갱신
     user.emailedDate = new Date();
     await user.save();
 
     // 이메일 전송
-    await transporter.sendMail(mailOptions);
+    await sendVerifyEmail({ email, id: user._id, verifyCode: user.verifyCode });
+
     res.json({ message: '회원가입 인증 메일이 다시 전송되었습니다.' });
   } catch (error) {
     return res.status(500).send(error);

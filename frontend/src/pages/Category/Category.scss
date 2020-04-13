@@ -1,0 +1,13 @@
+@import '../../shared/color.scss';
+@import '../../shared/mediaQuery.scss';
+
+.category {
+  margin-top: 30px;
+  @include mobile {
+    margin-top: 15px;
+  }
+
+  .category-container {
+    padding: 0 15px;
+  }
+}

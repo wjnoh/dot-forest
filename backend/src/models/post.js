@@ -30,6 +30,12 @@ const postSchema = new Schema({
     type: Number,
     default: 0,
   },
+  // T: 상의, O: 원피스, H: 머리 장식, ETC: 기타
+  category: {
+    type: String,
+    enum: ['T', 'O', 'H', 'ETC'],
+    required: true,
+  },
   createdDate: {
     type: Date,
     default: new Date(),

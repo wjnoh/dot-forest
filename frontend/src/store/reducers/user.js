@@ -1,7 +1,8 @@
 import * as actionType from '../actionTypes/user';
 
 const INITIAL_STATE = {
-  currentUser: null
+  isSignIn: Boolean(localStorage.getItem('jwtToken')),
+  currentUser: null,
 }
 
 export default function(state=INITIAL_STATE, action) {
@@ -10,6 +11,7 @@ export default function(state=INITIAL_STATE, action) {
     case actionType.FETCH_SIGN_IN_FULFILLED: {
       return {
         ...state,
+        isSignIn: true,
         currentUser: action.payload
       }
     }
@@ -17,6 +19,7 @@ export default function(state=INITIAL_STATE, action) {
       return {
         ...state,
         error: action.error,
+        isSignIn: false,
         currentUser: null
       }
     }
@@ -27,6 +30,7 @@ export default function(state=INITIAL_STATE, action) {
       
       return {
         ...state,
+        isSignIn: false,
         currentUser: null
       }
     }
@@ -36,18 +40,18 @@ export default function(state=INITIAL_STATE, action) {
       return {
         ...state,
         error: action.error,
+        isSignIn: false,
         currentUser: null
       }
     }
 
     // 회원가입 인증메일 재전송
-    case actionType.FETCH_SEND_VERIFY_EMAIL_FULFILLED: {
+    case actionType.FETCH_RE_SEND_VERIFY_EMAIL_FULFILLED: {
       return {
-        ...state,
-        currentUser: action.payload
+        ...state
       }
     }
-    case actionType.FETCH_SEND_VERIFY_EMAIL_REJECTED: {
+    case actionType.FETCH_RE_SEND_VERIFY_EMAIL_REJECTED: {
       return {
         ...state,
         error: action.error
@@ -58,13 +62,17 @@ export default function(state=INITIAL_STATE, action) {
     case actionType.FETCH_CURRENT_USER_FULFILLED: {
       return {
         ...state,
+        isSignIn: true,
         currentUser: action.payload
       }
     }
     case actionType.FETCH_CURRENT_USER_REJECTED: {
+      localStorage.removeItem('jwtToken');
+
       return {
         ...state,
         error: action.error,
+        isSignIn: false,
         currentUser: null
       }
     }
