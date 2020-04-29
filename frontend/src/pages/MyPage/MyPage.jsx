@@ -10,7 +10,7 @@ function MyPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default MyPage
+export default MyPage;

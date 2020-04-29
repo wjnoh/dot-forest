@@ -13,24 +13,24 @@ function SigninForm() {
   const handleSignInClick = (e) => {
     e.preventDefault();
 
-    if(!(email && password)) {
+    if (!(email && password)) {
       alert('입력한 정보를 다시 확인하세요.');
       return;
     }
 
     dispatch(userActionCreators.fetchSignIn({ email, password }));
-  }
+  };
 
   const handleReSendMailClick = (e) => {
     e.preventDefault();
 
-    if(!(email && password)) {
+    if (!(email && password)) {
       alert('입력한 정보를 다시 확인하세요.');
       return;
     }
 
     dispatch(userActionCreators.fetchReSendVerifyEmail({ email, password }));
-  }
+  };
 
   return (
     <div className="signin-form-wrapper">
@@ -40,12 +40,12 @@ function SigninForm() {
           {passwordInput}
         </div>
         <div className="signin-form-buttons">
-        <button className="green" onClick={handleSignInClick}>로그인</button>
-        <button className="" onClick={handleReSendMailClick}>회원가입 인증 메일 재전송</button>
-      </div>
+          <button className="green" onClick={handleSignInClick}>로그인</button>
+          <button className="" onClick={handleReSendMailClick}>회원가입 인증 메일 재전송</button>
+        </div>
       </form>
     </div>
-  )
+  );
 }
 
-export default SigninForm
+export default SigninForm;

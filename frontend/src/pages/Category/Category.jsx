@@ -10,7 +10,7 @@ function Category() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Category
+export default Category;

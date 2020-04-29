@@ -11,7 +11,7 @@ function Modal({ children, width, minHeight, onClose }) {
       </div>
       <div className="modal-dim" onClick={onClose} />
     </div>
-  )
+  );
 }
 
-export default Modal
+export default Modal;

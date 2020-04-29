@@ -4,23 +4,23 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isEqual } from 'lodash';
 import * as userActionCreators from '../../store/actionCreators/user';
 import history from '../../utils/history';
-import "./Header.scss";
+import './Header.scss';
 
 function Header() {
   const dispatch = useDispatch();
   const { isSignIn } = useSelector(state => state.user, isEqual);
 
   useEffect(() => {
-    if(isSignIn) {
+    if (isSignIn) {
       dispatch(userActionCreators.fetchCurrentUser());
     }
-  }, [isSignIn, dispatch])
+  }, [isSignIn, dispatch]);
 
   const handleSignOut = () => {
-    if(isSignIn) {
+    if (isSignIn) {
       dispatch(userActionCreators.signOut());
     }
-  }
+  };
   
   return (
     <header className="header">
@@ -56,7 +56,7 @@ function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

@@ -4,9 +4,9 @@ import RouterComponent from './RouterComponent';
 import history from './utils/history';
 
 // redux
-import { Provider } from "react-redux";
-import configureStore from "./store/configureStore";
-import rootSaga from "./store/sagas";
+import { Provider } from 'react-redux';
+import configureStore from './store/configureStore';
+import rootSaga from './store/sagas';
 const store = configureStore();
 store.runSaga(rootSaga);
 

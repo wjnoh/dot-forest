@@ -9,9 +9,9 @@ const middlewares = [sagaMiddleware];
 export default () => {
   const store = createStore(
     rootReducer,
-    composeEnhancers(applyMiddleware(...middlewares))
+    composeEnhancers(applyMiddleware(...middlewares)),
   );
   store.runSaga = sagaMiddleware.run;
   store.close = () =>  store.dispatch(END);
   return store;
-}
+};

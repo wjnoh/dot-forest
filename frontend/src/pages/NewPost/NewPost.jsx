@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import DropZone from '../../components/common/Modal/DropZone';
+import DropZone from '../../components/common/Modal/DropZone.jsx';
 import './NewPost.scss';
 
 function NewPost() {
@@ -22,7 +22,7 @@ function NewPost() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default NewPost
+export default NewPost;
