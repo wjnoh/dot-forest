@@ -1,7 +1,7 @@
 import React from 'react';
-import SigninForm from '../../components/SignForm/SigninForm';
-import SignupForm from '../../components/SignForm/SignupForm';
-import "./Auth.scss";
+import SigninForm from '../../components/SignForm/SigninForm.jsx';
+import SignupForm from '../../components/SignForm/SignupForm.jsx';
+import './Auth.scss';
 
 function Auth() {
   return (
@@ -13,7 +13,7 @@ function Auth() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Auth
+export default Auth;

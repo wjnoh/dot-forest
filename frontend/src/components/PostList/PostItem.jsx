@@ -8,7 +8,7 @@ function PostItem({ download_url }) {
         <img src={download_url} />
       </div>
     </li>
-  )
+  );
 }
 
-export default PostItem
+export default PostItem;

@@ -4,91 +4,91 @@ import * as actionTypes from '../actionTypes/user';
 export function fetchSignIn(payload) {
   return {
     type: actionTypes.FETCH_SIGN_IN,
-    payload
-  }
+    payload,
+  };
 }
 
 export function fetchSignInFulfilled(payload) {
   return {
     type: actionTypes.FETCH_SIGN_IN_FULFILLED,
-    payload
-  }
+    payload,
+  };
 }
 
 export function fetchSignInRejected(error) {
   return {
     type: actionTypes.FETCH_SIGN_IN_REJECTED,
-    error
-  }
+    error,
+  };
 }
 
 // 로그아웃
 export function signOut() {
   return {
-    type: actionTypes.SIGN_OUT
-  }
+    type: actionTypes.SIGN_OUT,
+  };
 }
 
 // 회원가입
 export function fetchSignUp(payload) {
   return {
     type: actionTypes.FETCH_SIGN_UP,
-    payload
-  }
+    payload,
+  };
 }
 
 export function fetchSignUpFulfilled() {
   return {
-    type: actionTypes.FETCH_SIGN_UP_FULFILLED
-  }
+    type: actionTypes.FETCH_SIGN_UP_FULFILLED,
+  };
 }
 
 export function fetchSignUpRejected(error) {
   return {
     type: actionTypes.FETCH_SIGN_UP_REJECTED,
-    error
-  }
+    error,
+  };
 }
 
 // 회원가입 인증메일 재전송
 export function fetchReSendVerifyEmail(payload) {
   return {
     type: actionTypes.FETCH_RE_SEND_VERIFY_EMAIL,
-    payload
-  }
+    payload,
+  };
 }
 
 export function fetchReSendVerifyEmailFulfilled(payload) {
   return {
     type: actionTypes.FETCH_RE_SEND_VERIFY_EMAIL_FULFILLED,
-    payload
-  }
+    payload,
+  };
 }
 
 export function fetchReSendVerifyEmailRejected(error) {
   return {
     type: actionTypes.FETCH_RE_SEND_VERIFY_EMAIL_REJECTED,
-    error
-  }
+    error,
+  };
 }
 
 // 현재 유저정보 가져오기
 export function fetchCurrentUser() {
   return {
-    type: actionTypes.FETCH_CURRENT_USER
-  }
+    type: actionTypes.FETCH_CURRENT_USER,
+  };
 }
 
 export function fetchCurrentUserFulfilled(payload) {
   return {
     type: actionTypes.FETCH_CURRENT_USER_FULFILLED,
-    payload
-  }
+    payload,
+  };
 }
 
 export function fetchCurrentUserRejected(error) {
   return {
     type: actionTypes.FETCH_CURRENT_USER_REJECTED,
-    error
-  }
+    error,
+  };
 }

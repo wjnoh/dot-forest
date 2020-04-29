@@ -8,8 +8,8 @@ const cateToText = {
   'T': '상의',
   'O': '원피스',
   'H': '머리 장식',
-  'ETC': '기타'
-}
+  'ETC': '기타',
+};
 
 function NavigationLink({ category }) {
   return (
@@ -21,7 +21,7 @@ function NavigationLink({ category }) {
         {cateToText[category]}
       </Link>
     </li>
-  )
+  );
 }
 
 function Navigation() {
@@ -37,7 +37,7 @@ function Navigation() {
         </ul>
       </div>
     </nav>
-  )
+  );
 }
 
 export default Navigation;

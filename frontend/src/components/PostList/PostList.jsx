@@ -10,8 +10,8 @@ function PostList() {
     itemSelector: '.post-item',
     gutter: '.post-gutter',
     columnWidth: '.post-sizer',
-    percentPosition: true
-  }
+    percentPosition: true,
+  };
   
   return (
     <section className="post-list">
@@ -24,13 +24,13 @@ function PostList() {
             <div className="post-gutter" />
             <div className="post-sizer" />
             {photos.length > 0 && photos.map((photo, index) => {
-              return <PostItem key={index} {...photo} />
+              return <PostItem key={index} {...photo} />;
             })}
           </Masonry>
         </ul>
       </div>
     </section>
-  )
+  );
 }
 
-export default PostList
+export default PostList;

@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from "redux-saga/effects";
+import { call, put, takeLatest } from 'redux-saga/effects';
 import history from '../../utils/history';
 import { fetchGET, fetchPOST } from '../../utils/fetch';
 import * as userActionCreators from '../actionCreators/user';
@@ -17,7 +17,7 @@ function* fetchSignInSaga(action) {
     
     alert(message);
     yield call(history.replace, '/');
-  } catch(error) {
+  } catch (error) {
     alert(error.response.data.message);
     yield put(userActionCreators.fetchSignInRejected(error.response));
   }
@@ -31,7 +31,7 @@ function* fetchSignUpSaga(action) {
     
     yield put(userActionCreators.fetchSignUpFulfilled());
     alert(message);
-  } catch(error) {
+  } catch (error) {
     alert(error.response.data.message);
     yield put(userActionCreators.fetchSignUpRejected(error.response));
   }
@@ -45,7 +45,7 @@ function* fetchReSendVerifyEmailSaga(action) {
 
     yield put(userActionCreators.fetchReSendVerifyEmailFulfilled());
     alert(message);
-  } catch(error) {
+  } catch (error) {
     alert(error.response.data.message);
     yield put(userActionCreators.fetchReSendVerifyEmailRejected(error.response));
   }
@@ -55,13 +55,13 @@ function* fetchReSendVerifyEmailSaga(action) {
 function* fetchCurrentUserSaga() {
   try {
     const jwtToken = localStorage.getItem('jwtToken');
-    if(jwtToken) {
+    if (jwtToken) {
       const { data: { user } } = yield call(fetchGET, { url: '/users/current', jwtToken });
       yield put(userActionCreators.fetchCurrentUserFulfilled(user));
     } else {
       yield put(userActionCreators.fetchCurrentUserRejected({ message: '토큰이 없습니다.' }));
     }
-  } catch(error) {
+  } catch (error) {
     alert('토큰이 만료되었습니다.');
     yield put(userActionCreators.fetchCurrentUserRejected(error.response));
   }

@@ -23,11 +23,11 @@ function DropZone({
         ...acceptedFiles.map(file => {
           return {
             file,
-            preview: URL.createObjectURL(file)
-          }
-        })
+            preview: URL.createObjectURL(file),
+          };
+        }),
       ]);
-    }
+    },
   });
 
   return (
@@ -35,13 +35,13 @@ function DropZone({
       <input {...getInputProps()} />
       <span className={`drop-zone-message ${dropZoneMessageClass}`}>
         {isDragActive
-            ? activeMessage
-            : message
+          ? activeMessage
+          : message
         }
       </span>
       {previeImage && <img src={previeImage} className={`${previeImageClass}`} alt="previeImage"/>}
     </div>
-  )
+  );
 }
 
-export default DropZone
+export default DropZone;

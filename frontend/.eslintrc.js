@@ -1,13 +1,17 @@
 module.exports = {
   env: {
-    node: true,
-    commonjs: true,
+    browser: true,
     es6: true
   },
-  extends: "eslint:recommended",
+  parser: "babel-eslint",
   parserOptions: {
-    ecmaVersion: 2018
+    ecmaFeatures: {
+      jsx: true
+    },
+    ecmaVersion: 2018,
+    sourceType: "module"
   },
+  plugins: ["react"],
   rules: {
     indent: ["error", 2],
     quotes: ["error", "single"],

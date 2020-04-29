@@ -7,10 +7,10 @@ import './SignupForm.scss';
 function SignupForm() {
   const dispatch = useDispatch();
 
-  const [email, emailInput] = useInput({ type: 'text', placeholder: '이메일', required: true })
-  const [password, passwordInput] = useInput({ type: 'password', placeholder: '패스워드(영문, 숫자 포함 6~12자)', required: true })
-  const [passwordConfirm, passwordConfirmInput] = useInput({ type: 'password', placeholder: '패스워드 확인', required: true })
-  const [nickName, nickNameInput] = useInput({ type: 'text', placeholder: '닉네임(특수문자 제외 2자 이상)', required: true })
+  const [email, emailInput] = useInput({ type: 'text', placeholder: '이메일', required: true });
+  const [password, passwordInput] = useInput({ type: 'password', placeholder: '패스워드(영문, 숫자 포함 6~12자)', required: true });
+  const [passwordConfirm, passwordConfirmInput] = useInput({ type: 'password', placeholder: '패스워드 확인', required: true });
+  const [nickName, nickNameInput] = useInput({ type: 'text', placeholder: '닉네임(특수문자 제외 2자 이상)', required: true });
 
   const isEmailOk = email.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i);
   const isPasswordOk = password.match(/^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{6,12}$/);
@@ -20,13 +20,13 @@ function SignupForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if(!(isEmailOk && isPasswordOk && isPasswordConfirmOk && isNickNameOk)) {
+    if (!(isEmailOk && isPasswordOk && isPasswordConfirmOk && isNickNameOk)) {
       alert('입력한 정보를 다시 확인하세요.');
       return;
     }
 
     dispatch(userActionCreators.fetchSignUp({ email, password, nickName }));
-  }
+  };
 
   return (
     <div className="signup-form-wrapper">
@@ -54,7 +54,7 @@ function SignupForm() {
         </div>
       </form>
     </div>
-  )
+  );
 }
 
-export default SignupForm
+export default SignupForm;
